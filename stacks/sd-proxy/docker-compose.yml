@@ -1,0 +1,22 @@
+services:
+  sd-proxy:
+    image: nginx:alpine
+    container_name: sd-proxy
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - agents_net
+      - traefik_net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sd.rule=Host(`sd.project-reloaded.org`)"
+      - "traefik.http.routers.sd.entrypoints=web"
+      - "traefik.http.services.sd.loadbalancer.server.port=80"
+
+networks:
+  agents_net:
+    external: true
+  traefik_net:
+    external: true
+    name: traefik_net

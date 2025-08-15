@@ -1,0 +1,31 @@
+services:
+  portainer:
+    image: portainer/portainer-ee:lts
+    container_name: portainer
+    restart: always
+    ports:
+      - "8000:8000"    # Bypass bleibt
+      - "9443:9443"    # Bypass bleibt (HTTPS)
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    networks:
+      - agents_net
+      - traefik_net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.project-reloaded.org`)"
+      - "traefik.http.routers.portainer.entrypoints=web"
+      - "traefik.http.services.portainer.loadbalancer.server.scheme=http"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+
+volumes:
+  portainer_data:
+    name: portainer_data
+
+networks:
+  agents_net:
+    external: true
+  traefik_net:
+    external: true
+    name: traefik_net

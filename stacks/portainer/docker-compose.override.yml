@@ -1,0 +1,4 @@
+volumes:
+  portainer_data:
+    external: true
+    name: portainer_data

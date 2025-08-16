@@ -6,20 +6,18 @@ services:
     ports:
       - "5678:5678"
     environment:
-      - N8N_SECURE_COOKIE=false
-      - TZ=${TZ}
+      - N8N_ENDPOINT_WEBHOOK=webhook
+      - TZ=Europe/Berlin
       - N8N_HOST=n8n.project-reloaded.org
       - N8N_PROTOCOL=http
       - N8N_PORT=5678
       - N8N_PUBLIC_API_DISABLED=false
-      - N8N_API_KEY=${API_KEY}
-      - N8N_ENDPOINT_WEBHOOK=webhook
-      - N8N_RUNNERS_ENABLED=false
+      - N8N_API_KEY=f56f1fdc833522dcc58173494c66bc336065fcda13cb78fd3325e09d98724ca5
+      - N8N_SECURE_COOKIE=false
+      - N8N_RUNNERS_ENABLED=true
     volumes:
       - /srv/ops-automations/n8n/data:/home/node/.n8n
       - /srv/ops-automations/n8n/workflows:/home/node/workflows
-      - /srv/ops-automations/checks:/srv/ops-automations/checks:ro
-      - /var/lib/push_all:/var/lib/push_all
     networks:
       - agents_net
 networks:

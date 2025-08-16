@@ -14,8 +14,16 @@ services:
       - GENERIC_TIMEZONE=Europe/Berlin
       - N8N_SECURE_COOKIE=false
       - N8N_ENCRYPTION_KEY=Meinautoisteinmgtf135
+      - N8N_EXECUTIONS_DATA_SAVE_ON_SUCCESS=none
+      - N8N_EXECUTIONS_DATA_SAVE_ON_ERROR=all
+      - N8N_API_KEY=73142a6b3fb7247a75cd592e9f78ce7e545418a0c039de14
+      - N8N_PUBLIC_API_DISABLED=false
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_RUNNERS_ENABLED=true
     volumes:
       - /srv/agents/n8n:/home/node/.n8n
+      - /srv/ops-automations/n8n/exports:/home/node/exports
+      - /srv/ops-automations/n8n/workflows:/home/node/workflows
     networks:
       - agents_net
       - traefik_net

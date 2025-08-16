@@ -1,0 +1,9 @@
+services:
+  n8n:
+    environment:
+      - N8N_PUBLIC_API_DISABLED=false
+      - N8N_API_KEY=REPLACE_WITH_YOUR_JWT_API_KEY
+      - N8N_ENDPOINT_WEBHOOK=webhook
+      - N8N_PATH=
+      - EXECUTIONS_MODE=regular
+      - N8N_RUNNERS_ENABLED=false

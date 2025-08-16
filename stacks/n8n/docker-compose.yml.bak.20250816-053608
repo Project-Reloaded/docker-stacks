@@ -6,7 +6,6 @@ services:
     ports:
       - "5678:5678"
     environment:
-      - N8N_SECURE_COOKIE=false
       - TZ=${TZ}
       - N8N_HOST=n8n.project-reloaded.org
       - N8N_PROTOCOL=http
